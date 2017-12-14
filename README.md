@@ -1,3 +1,3 @@
 # LOJA
 
-- [x] something
+- [ ] something
