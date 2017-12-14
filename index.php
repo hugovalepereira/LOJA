@@ -86,7 +86,7 @@ foreach($resultados as $linha){
 
 
   ?>
-  <h1>VYNIL STORE <?php echo $nome;?></h1>
+  <h1>ViNIL STORE <?php echo $nome;?></h1>
 
   <h2>LOG IN</h2>
   <form method="post">
