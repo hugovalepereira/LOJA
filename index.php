@@ -1,35 +1,6 @@
 
 <?php
-$nomeErr = $emailErr = $passwordErr = $password_confirmErr = "";
-$nome = $email = $password = $password_confirm = $email_login = $password_login="";
-
-//asdasdasds
-//cria ligação à base de dados
-$servername = "localhost";
-$username = "root";
-$pass = "root";
-$bd = "vinis";
-$conn = mysqli_connect($servername, $username, $pass, $bd);
-
-if (!$conn){
-  die("Erro na ligacao: " . mysqli_connect_error());
-}
-
-mysqli_set_charset($conn, "utf8");
-
-echo "Ligacao estabelecida!<br>";
-
-
-
-
-$resultados = mysqli_query($conn, "select * from admin;");
-
-foreach($resultados as $linha){
-  echo "email -> ";
-  echo ($linha['email'] . "<br>" . $linha['password'] . "<br>" );
-}
-
-
+  include 'func.php';
 ?>
 
 
@@ -47,77 +18,102 @@ foreach($resultados as $linha){
 
   //SIGN UP
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["nome"])) {
-      $nomeErr = "nome é um campo obrigatório";
-    } else {
-      $nome = $_POST["nome"];
-    }
 
-    if (empty($_POST["email"])) {
-      $emailErr = "email é um campo obrigatório";
-    } else {
-      $email =$_POST["email"];
-    }
+    if(isset($_POST["submit"])){ // CLICANDO NO BOTAO DE SIGN UP
 
-    if (empty($_POST["password"])) {
-      $passwordErr = "password é um campo obrigatório";
-    }
-
-    if (empty($_POST["password_confirm"])) {
-      $password_confirmErr = "confirmar password é um campo obrigatório";
-    } else {
-      if ($_POST["password_confirm"]==$_POST["password"]) {
-
-        $password = password_hash($_POST["password"],PASSWORD_DEFAULT);
-
-      } else{
-        $password_confirmErr = "as passwords não coincídem!";
-
+      if (empty($_POST["nome"])) {
+        $nomeErr = "nome é um campo obrigatório";
+      } else {
+        $nome = $_POST["nome"];
       }
 
-    }
-    if($nome!=""&&$email!=""&&$password!=""){
-      mysqli_query($conn, "insert into cliente (nome,email,password) values ('$nome', '$email','$password')");
-      // DESCOMENTAR LINHA A BAIXO PARA LIGAR O ENVIO DE EMAIL
-      $headers = "From: VYNIL STORE <noreply@vynilstore.com>" . "\r\n";
-      //mail("hvpereira@gmail.com","My subject","funciona!!!!",$headers);
-      mysqli_close($conn);
-    }
+      if (empty($_POST["email"])) {
+        $emailErr = "email é um campo obrigatório";
+      } else {
+        $email =$_POST["email"];
+      }
 
-  }
+      if (empty($_POST["password"])) {
+        $passwordErr = "password é um campo obrigatório";
+      }
 
+      if (empty($_POST["password_confirm"])) {
+        $password_confirmErr = "confirmar password é um campo obrigatório";
+      } else {
+        if ($_POST["password_confirm"]==$_POST["password"]) {
 
+          $password = password_hash($_POST["password"],PASSWORD_DEFAULT);
 
-  //LOGIN
+        } else{
+          $password_confirmErr = "as passwords não coincídem!";
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["email_login"])) {
-      $nomeErr = "nome é um campo obrigatório";
-    } else {
-      $email_login = $_POST["email_login"];
-    }
-
-    if (empty($_POST["password_login"])) {
-      $emailErr = "email é um campo obrigatório";
-    } else {
-      $password_login =$_POST["password_login"];
-    }
-
-
-    if($email_login!=""&&$password_login!=""){
-      $result=mysqli_query($conn, "SELECT email, password, ativo FROM cliente WHERE email='".$email_login."' AND ativo='1'");
-      foreach($result as $linha){
-        if (password_verify($password_login, $linha['password'])) {
-          echo 'Password is valid!';
-        } else {
-          echo 'Invalid password.';
         }
-        
+
+      }
+      if($nome!=""&&$email!=""&&$password!=""){
+        mysqli_query($conn, "insert into cliente (nome,email,password) values ('$nome', '$email','$password')");
+        $to      = $email;
+        $subject = 'Signup | Verification'; // Give the email a subject
+        $message = '
+
+        Thanks for signing up!
+        Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+
+        ------------------------
+        Username: '.$nome.'
+        Password: '.$password.'
+        ------------------------
+
+        Please click this link to activate your account:
+        http://localhost:8000/verify.php?email='.$email.'
+
+        ';  // endereço devia ter uma hash mas isso necesita alterações da base de dados
+
+
+
+
+        // DESCOMENTAR LINHA A BAIXO PARA LIGAR O ENVIO DE EMAIL
+        $headers = "From: VYNIL STORE <noreply@vynilstore.com>" . "\r\n";
+        mail("oneblackholemail@gmail.com",$subject,$message,$headers);
+        //mail($to, $subject, $message, $headers); // Send our email
+        mysqli_close($conn);
       }
 
-    }
+    } elseif (isset($_POST["submit_login"])){ // CLICANDO NO BOTAO DE LOGIN
 
+      if (empty($_POST["email_login"])) {
+        $email_loginErr = "email é um campo obrigatório";
+      } else {
+        $email_login = $_POST["email_login"];
+      }
+
+      if (empty($_POST["password_login"])) {
+        $password_loginErr = "introduza a sua password";
+      } else {
+        $password_login =$_POST["password_login"];
+      }
+
+
+      if($email_login!=""&&$password_login!=""){
+        $result=mysqli_query($conn, "SELECT email, password, ativo FROM cliente WHERE email='".$email_login."' AND ativo='1'");
+        foreach($result as $linha){
+          if (password_verify($password_login, $linha['password'])) {
+            echo 'Password is valid!';
+          } else {
+            echo 'Invalid password.';
+          }
+
+        }
+
+      }
+
+
+
+    }
   }
+
+
+
 
 
   ?>
@@ -125,8 +121,10 @@ foreach($resultados as $linha){
 
   <h2>LOG IN</h2>
   <form method="post">
-    email: <input type="email" placeholder="email" name="email_login"><br>
-    password: <input type="password" name="password_login"><br>
+    email: <input type="email" placeholder="email" name="email_login">
+    <span class="error"> <?php echo $email_loginErr;?></span><br>
+    password: <input type="password" name="password_login">
+    <span class="error"> <?php echo $password_loginErr;?></span><br>
     <input type="submit" name="submit_login" value="L O G I N"><br>
 
   </form>
