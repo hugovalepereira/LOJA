@@ -61,7 +61,7 @@ h2 {
     margin: auto;
     padding-top: 40vh;
     padding-bottom: 20vh;
-    
+
 }
 
 #log,
@@ -91,7 +91,7 @@ form {
     z-index: 1;
 }
 
-/*
+
 input {
     color: black;
     position: absolute;
@@ -149,4 +149,3 @@ input {
     }
 
 }
-*/
