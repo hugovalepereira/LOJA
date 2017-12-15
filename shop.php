@@ -19,22 +19,21 @@ $_SESSION['carro']=[];
   <h1>VYNIL STORE - SHOP</h1>
 
   <main class="main">
-    <div class="one">One</div>
-    <div class="two">Two</div>
-    <div class="three">Three</div>
-    <div class="four">Four</div>
-    <div class="five">Five</div>
-    <div class="six">Six</div>
+    <?php
+    $result=mysqli_query($conn, "SELECT * FROM album");
+
+    if (!$result){
+      echo("Descricao do erro: " . mysqli_error($conn));
+    }else{
+      foreach($result as $linha)  {
+        echo "<div class='disc'><img src='".$linha['editora']."'  />'</div>"; //MUDAR DEPOIS SE DER
+
+      }
+    }
+    ?>
   </main>
 
 
-
-
-
-
 </body>
-
-
-
 
 </html>
