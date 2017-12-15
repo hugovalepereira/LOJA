@@ -1,8 +1,11 @@
 <?php
 include 'func.php';
-session_start();
-print $_SESSION['nome'];
-print $_SESSION['email'];
+session_start();  // FECHAR DEPOIS!
+$_SESSION['carro']=[];
+
+
+
+
 ?>
 
 <!doctype html>
@@ -15,10 +18,23 @@ print $_SESSION['email'];
 <body>
   <h1>VYNIL STORE - SHOP</h1>
 
+  <main class="main">
+    <div class="one">One</div>
+    <div class="two">Two</div>
+    <div class="three">Three</div>
+    <div class="four">Four</div>
+    <div class="five">Five</div>
+    <div class="six">Six</div>
+  </main>
+
+
 
 
 
 
 </body>
+
+
+
 
 </html>
