@@ -30,6 +30,8 @@ include 'func.php';
     // Acesso à página sem especificação de variáveis
     echo '<div>ERRO! Por favor aceda através do endereço que foi enviado para o seu email</div>';
   }
+
+  mysqli_close($conn);
   ?>
 
   <a href="http://localhost:8000/">Página Principal</a>

@@ -1,6 +1,9 @@
 
 <?php
 include 'func.php';
+
+$nomeErr = $emailErr = $passwordErr = $password_confirmErr = $email_loginErr= $password_loginErr="";
+$nome = $email = $password = $password_confirm = $email_login = $password_login="";
 ?>
 
 
@@ -53,7 +56,7 @@ include 'func.php';
 
       if($nome!=""&&$email!=""&&$password!=""){
         $hash = md5( rand(0,1000) );
-        error_log($hash);
+
         mysqli_query($conn, "insert into cliente (nome,email,password,hash) values ('$nome', '$email','$password','$hash')");
 
         $to      = $email;
@@ -98,21 +101,37 @@ include 'func.php';
 
 
       if($email_login!=""&&$password_login!=""){
-        $resultA=mysqli_query($conn, "SELECT email, password, ativo FROM admin WHERE email='".$email_login."' AND password='".$password_login."' AND ativo='1'");
+        $resultA=mysqli_query($conn, "SELECT nome, email, password, ativo FROM admin WHERE email='".$email_login."' AND password='".$password_login."' AND ativo='1'");
+
         $matchA = mysqli_affected_rows($conn);
+        $res = mysqli_fetch_all($resultA, MYSQLI_ASSOC);
+
         if($matchA > 0){
           echo "ADMINISTRADOR";
-
+          session_start();
+          $_SESSION['tipo'] = "admin";
+          $_SESSION['nome'] = $res[0]['nome'];
+          $_SESSION['email'] = $res[0]['email'];
+          header("Location:admin.php");
+          mysqli_close($conn);
+          exit();
 
         }else{
-          $resultC=mysqli_query($conn, "SELECT email, password, ativo FROM cliente WHERE email='".$email_login."' AND ativo='1'");
+          $resultC=mysqli_query($conn, "SELECT nome, email, password, ativo FROM cliente WHERE email='".$email_login."' AND ativo='1'");
           $matchC = mysqli_affected_rows($conn);
           if($matchC > 0){
             foreach($resultC as $linha){
               if (password_verify($password_login, $linha['password'])) {
-                //Password is valid!
-                echo "CLIENTE";
 
+                echo "CLIENTE";
+                session_start();   // IMPLEMENTAR SISTAMA DE CHAVE ENCRIPTADA COMO NA HASH PARA A SESSAO
+
+                $_SESSION['tipo'] = "cliente";
+                $_SESSION['nome'] = $linha['nome'];
+                $_SESSION['email'] = $linha['email'];
+                header("Location:shop.php");
+                mysqli_close($conn);
+                exit();
               } else {
                 echo "password errada";
               }
@@ -132,16 +151,12 @@ include 'func.php';
 
 
   }
-
-
-
-
-
   ?>
+
   <h1>VYNIL STORE <?php echo $nome;?></h1>
 
   <h2>LOG IN</h2>
-  <form method="post">
+  <form method="post" >
     email: <input type="email" placeholder="email" name="email_login">
     <span class="error"> <?php echo $email_loginErr;?></span><br>
     password: <input type="password" name="password_login">

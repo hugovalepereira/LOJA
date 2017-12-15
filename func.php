@@ -1,6 +1,5 @@
 <?php
-$nomeErr = $emailErr = $passwordErr = $password_confirmErr = $email_loginErr= $password_loginErr="";
-$nome = $email = $password = $password_confirm = $email_login = $password_login="";
+
 
 
 //cria ligação à base de dados
@@ -16,7 +15,7 @@ if (!$conn){
 
 mysqli_set_charset($conn, "utf8");
 
-error_log("Ligacao estabelecida!");
+error_log("Ligacao estabelecida!",0);
 
 
 
