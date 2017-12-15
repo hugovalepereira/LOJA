@@ -3,11 +3,10 @@
 $nomeErr = $emailErr = $passwordErr = $password_confirmErr = "";
 $nome = $email = $password = $password_confirm = "";
 
-//asdasdasds
 //cria ligação à base de dados
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $bd = "vinis";
 $conn = mysqli_connect($servername, $username, $password, $bd);
 
@@ -17,7 +16,7 @@ if (!$conn){
 
 mysqli_set_charset($conn, "utf8");
 
-echo "Ligacao estabelecida!<br>";
+
 
 
 
@@ -39,6 +38,7 @@ foreach($resultados as $linha){
 <head>
   <title>VYNIL STORE</title>
   <meta charset="utf-8">
+   <link href="https://fonts.googleapis.com/css?family=Bungee|Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -86,8 +86,10 @@ foreach($resultados as $linha){
 
 
   ?>
-  <h1>ViNIL STORE <?php echo $nome;?></h1>
-
+  <h1>VYNIL STORE </h1>
+  <img src="img/vynil.png" id="vynil">
+  
+  <h2><?php echo $nome;?></h2>
   <h2>LOG IN</h2>
   <form method="post">
     email: <input type="email" placeholder="email" name="email_login"><br>

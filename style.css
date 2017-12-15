@@ -1,9 +1,72 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    
+}
+
+body{
+    width: 100vw;
+    overflow-x:hidden;
+    background-color:black;
+}
+
+h1{
+    font-family: 'Bungee', cursive;
+    position:absolute;
+    text-align:center;
+    width:100vw;
+    margin:auto;
+    top:28vh;
+    font-size: 120px;
+    z-index:1;
+}
+
+h2{
+    margin-left:10vw;
+}
+
+form{
+  height:100px;
+  margin-left: 10vw;
+  padding: 16px 8px;  
+}
+
+input{
+    color:black;
+    position: absolute;
+    box-sizing:border-box;
+    left: 30vw;
+    height:20px;
+}
 
 .error {
+  position:absolute;
+  left: 400px;
   color: #FF0000;
 }
 
-input {
-  position: absolute;
-  left: 150px;
+#vynil{
+    box-sizing:border-box;
+    width:inherit;
+    height:auto;
+    margin:0px;
+    margin-top:10vh;
+    animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+		from {
+				transform: rotate(0deg);
+		}
+		to {
+                transform: rotate(359deg);
+		}
+}
+
+@media only screen and (max-width: 960px) {
+
+   h1 { 
+      font-size: 60px; 
+   }
+
 }
