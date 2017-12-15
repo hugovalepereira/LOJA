@@ -1,6 +1,6 @@
 
 <?php
-  include 'func.php';
+include 'func.php';
 ?>
 
 
@@ -50,22 +50,25 @@
         }
 
       }
+
       if($nome!=""&&$email!=""&&$password!=""){
-        mysqli_query($conn, "insert into cliente (nome,email,password) values ('$nome', '$email','$password')");
+        $hash = md5( rand(0,1000) );
+        error_log($hash);
+        mysqli_query($conn, "insert into cliente (nome,email,password,hash) values ('$nome', '$email','$password','$hash')");
+
         $to      = $email;
-        $subject = 'Signup | Verification'; // Give the email a subject
+        $subject = 'Signup | Verifição'; // Give the email a subject
         $message = '
 
-        Thanks for signing up!
-        Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+        A sua conta foi já foi criada.
+        Por favor utilize o link abaixo para confirmar e começar a utilizar.
 
         ------------------------
-        Username: '.$nome.'
-        Password: '.$password.'
+        Email de login: '.$nome.'
         ------------------------
 
         Please click this link to activate your account:
-        http://localhost:8000/verify.php?email='.$email.'
+        http://localhost:8000/verify.php?email='.$email.'&hash='.$hash.'
 
         ';  // endereço devia ter uma hash mas isso necesita alterações da base de dados
 
@@ -76,7 +79,7 @@
         $headers = "From: VYNIL STORE <noreply@vynilstore.com>" . "\r\n";
         mail("oneblackholemail@gmail.com",$subject,$message,$headers);
         //mail($to, $subject, $message, $headers); // Send our email
-        mysqli_close($conn);
+
       }
 
     } elseif (isset($_POST["submit_login"])){ // CLICANDO NO BOTAO DE LOGIN
@@ -95,12 +98,28 @@
 
 
       if($email_login!=""&&$password_login!=""){
-        $result=mysqli_query($conn, "SELECT email, password, ativo FROM cliente WHERE email='".$email_login."' AND ativo='1'");
-        foreach($result as $linha){
-          if (password_verify($password_login, $linha['password'])) {
-            echo 'Password is valid!';
-          } else {
-            echo 'Invalid password.';
+        $resultA=mysqli_query($conn, "SELECT email, password, ativo FROM admin WHERE email='".$email_login."' AND password='".$password_login."' AND ativo='1'");
+        $matchA = mysqli_affected_rows($conn);
+        if($matchA > 0){
+          echo "ADMINISTRADOR";
+
+
+        }else{
+          $resultC=mysqli_query($conn, "SELECT email, password, ativo FROM cliente WHERE email='".$email_login."' AND ativo='1'");
+          $matchC = mysqli_affected_rows($conn);
+          if($matchC > 0){
+            foreach($resultC as $linha){
+              if (password_verify($password_login, $linha['password'])) {
+                //Password is valid!
+                echo "CLIENTE";
+
+              } else {
+                echo "password errada";
+              }
+            }
+          }else {
+            //Invalid password
+            echo "password errada";
           }
 
         }
@@ -108,8 +127,10 @@
       }
 
 
-
     }
+
+
+
   }
 
 
