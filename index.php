@@ -3,7 +3,7 @@
 $nomeErr = $emailErr = $passwordErr = $password_confirmErr = "";
 $nome = $email = $password = $password_confirm = $email_login = $password_login="";
 
-
+//asdasdasds
 //cria ligação à base de dados
 $servername = "localhost";
 $username = "root";
