@@ -61,7 +61,7 @@ h2 {
     margin: auto;
     padding-top: 40vh;
     padding-bottom: 20vh;
-
+    
 }
 
 #log,
@@ -90,7 +90,6 @@ form {
     padding: 16px 6vw;
     z-index: 1;
 }
-
 
 input {
     color: black;
