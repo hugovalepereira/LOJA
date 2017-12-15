@@ -3,7 +3,6 @@ include 'func.php';
 session_start();
 print $_SESSION['nome'];
 print $_SESSION['email'];
-
 ?>
 
 <!doctype html>

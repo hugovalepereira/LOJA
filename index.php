@@ -153,7 +153,7 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
   }
   ?>
 
-  <h1>VYNIL STORE <?php echo $nome;?></h1>
+  <h1>VYNIL STORE</h1>
 
   <h2>LOG IN</h2>
   <form method="post" >
