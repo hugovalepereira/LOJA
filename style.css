@@ -3,9 +3,17 @@
   color: #FF0000;
 }
 
+
+main{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(10px, auto);
+}
+
 /*
 input {
-  position: absolute;
-  left: 150px;
+position: absolute;
+left: 150px;
 }
 */
