@@ -1,15 +1,15 @@
 
 <?php
 $nomeErr = $emailErr = $passwordErr = $password_confirmErr = "";
-$nome = $email = $password = $password_confirm = "";
+$nome = $email = $password = $password_confirm = $email_login = $password_login="";
 
 
 //cria ligação à base de dados
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$pass = "root";
 $bd = "vinis";
-$conn = mysqli_connect($servername, $username, $password, $bd);
+$conn = mysqli_connect($servername, $username, $pass, $bd);
 
 if (!$conn){
   die("Erro na ligacao: " . mysqli_connect_error());
@@ -44,6 +44,8 @@ foreach($resultados as $linha){
 
 <body>
   <?php
+
+  //SIGN UP
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["nome"])) {
       $nomeErr = "nome é um campo obrigatório";
@@ -78,15 +80,48 @@ foreach($resultados as $linha){
       mysqli_query($conn, "insert into cliente (nome,email,password) values ('$nome', '$email','$password')");
       // DESCOMENTAR LINHA A BAIXO PARA LIGAR O ENVIO DE EMAIL
       $headers = "From: VYNIL STORE <noreply@vynilstore.com>" . "\r\n";
-      mail("hvpereira@gmail.com","My subject","funciona!!!!",$headers);
+      //mail("hvpereira@gmail.com","My subject","funciona!!!!",$headers);
       mysqli_close($conn);
     }
 
   }
 
 
+
+  //LOGIN
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["email_login"])) {
+      $nomeErr = "nome é um campo obrigatório";
+    } else {
+      $email_login = $_POST["email_login"];
+    }
+
+    if (empty($_POST["password_login"])) {
+      $emailErr = "email é um campo obrigatório";
+    } else {
+      $password_login =$_POST["password_login"];
+    }
+
+
+    if($email_login!=""&&$password_login!=""){
+      $result=mysqli_query($conn, "SELECT email, password, ativo FROM cliente WHERE email='".$email_login."' AND ativo='1'");
+      foreach($result as $linha){
+        if (password_verify($password_login, $linha['password'])) {
+          echo 'Password is valid!';
+        } else {
+          echo 'Invalid password.';
+        }
+        
+      }
+
+    }
+
+  }
+
+
   ?>
-  <h1>ViNIL STORE <?php echo $nome;?></h1>
+  <h1>VYNIL STORE <?php echo $nome;?></h1>
 
   <h2>LOG IN</h2>
   <form method="post">
