@@ -36,7 +36,7 @@ $_SESSION['carro']=[];
       echo("Descricao do erro: " . mysqli_error($conn));
     }else{
       foreach($result as $linha)  {
-        echo "<div class='disc'><img src='".$linha['editora']."'  />'</div>"; //MUDAR DEPOIS SE DER
+        echo "<div class='disc'><img src='albums/".$linha['editora']."'  />'</div>"; //MUDAR DEPOIS SE DER
 
       }
     }
