@@ -13,13 +13,13 @@ main{
 }
 
 .disc{
-
+  cursor: pointer;
   text-align: center;
-
+  user-select: none;
+  user-drag:none;
 }
 
 img{
-
   width:250px;
   height: auto;
 }
@@ -34,7 +34,6 @@ img{
   top:100px;
   position: fixed;
   width: 50vw;
-
   left: 50%;
   transform: translate(-50%, 0);
 

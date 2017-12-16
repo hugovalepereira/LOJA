@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $("#adicionar").toggleClass( "hide" )
  });
 
-}
+
  </script>
 
 </body>
