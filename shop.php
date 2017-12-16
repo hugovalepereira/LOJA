@@ -43,28 +43,99 @@ $_SESSION['carro']=[];
     ?>
   </main>
   <script>
-  $('#l-icon').click(function() {
-    $('#leftsb').animate({
-      width: "600px",
-    }, 500, function() {
-    });
-    $('#l-icon').animate({
-      left: "240px",
-    }, 500, function() {
-    });
-  });
+            var x, y;
+            x = true;
+            y = true;
+            
+            $('#l-icon').click(function() {
+                if (x === true) {
+                    $('#leftsb').animate({
+                        width: "600px",
+                    }, 500, function() {
+                        
+                    });
 
-  $('#r-icon').click(function() {
-    $('#rightsb').animate({
-      width: "600px",
-    }, 500, function() {
-    });
-    $('#r-icon').animate({
-      right: "240px",
-    }, 500, function() {
-    });
-  });
-  </script>
+
+                    $('#l-icon').animate({
+                        left: "240px",
+                    }, 500, function() {
+                        x = false;
+                    });
+
+                    $('#rightsb').animate({
+                        width: "100px",
+                    }, 500, function() {});
+
+
+                    $('#r-icon').animate({
+                        right: "0",
+                    }, 500, function() {
+                        y = true;
+                    });
+
+                } else if (x === false) {
+
+                    $('#leftsb').animate({
+                        width: "100px",
+                    }, 500, function() {});
+
+
+                    $('#l-icon').animate({
+                        left: "0",
+                    }, 500, function() {
+                        x = true;
+                    });
+
+                }
+            });
+           
+
+            $('#r-icon').click(function() {
+                if (y === true) {
+                    $('#rightsb').animate({
+                        width: "600px",
+                    }, 500, function() {
+                        
+                    });
+
+
+                    $('#r-icon').animate({
+                        right: "240px",
+                    }, 500, function() {
+                        y = false;
+                    });
+                    
+                    $('#leftsb').animate({
+                        width: "100px",
+                    }, 500, function() {});
+
+
+                    $('#l-icon').animate({
+                        left: "0",
+                    }, 500, function() {
+                        x = true;
+                    });
+
+
+
+                } else if (y === false) {
+
+                    $('#rightsb').animate({
+                        width: "100px",
+                    }, 500, function() {});
+
+
+                    $('#r-icon').animate({
+                        right: "0",
+                    }, 500, function() {
+                        y = true;
+                    });
+
+                }
+            });
+
+        </script>
+
 
 </body>
 
