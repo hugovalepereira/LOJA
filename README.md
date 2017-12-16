@@ -6,7 +6,7 @@
 
 - [x]  Registar utilizador. Requer nome, endereço de email e password. A cada registo novo a loja atribui um saldo inicial fictício que o cliente usará em compras de discos. (cotação extra: o endereço deve ser verificado através de um envio de um email com um link de ativação do registo)
 
-- [ ] Login (o nome do utilizador deve aparecer em todas as páginas após o login) / Logout.
+- [x] Login (o nome do utilizador deve aparecer em todas as páginas após o login) / Logout.
 
 - [ ] Listar todos os álbuns.
 
@@ -22,7 +22,7 @@
 
 ### Administrador
 
-- [ ] Login via email e password / Logout.
+- [x] Login via email e password / Logout.
 
 - [ ] Adicionar um novo álbum.
 

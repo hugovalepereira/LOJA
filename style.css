@@ -1,3 +1,43 @@
+
+.error {
+  color: #FF0000;
+}
+
+
+
+
+
+#add{
+  padding-top: 100px;
+}
+
+#adicionar{
+  padding: 20px;
+  background-color: #ccc;
+  top:100px;
+  position: fixed;
+  width: 50vw;
+
+  left: 50%;
+  transform: translate(-50%, 0);
+
+}
+.disc:hover {
+  background-color: #eee;
+}
+
+.hide {
+  display: none;
+}
+
+
+
+
+
+input {
+position: absolute;
+left: 150px;
+
 * {
     font-family: 'Roboto', sans-serif;
     color: white;
@@ -61,7 +101,7 @@ h2 {
     margin: auto;
     padding-top: 40vh;
     padding-bottom: 20vh;
-    
+
 }
 
 #log,
@@ -91,7 +131,10 @@ form {
     z-index: 1;
 }
 
-/*
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6165f4ec7a8d4dec9914c8eb552e6eb24f6280da
 input {
     color: black;
     position: absolute;
@@ -149,4 +192,3 @@ input {
     }
 
 }
-*/
