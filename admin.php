@@ -36,8 +36,7 @@ $album_ano=$album_duracao=$album_nMusicas=$album_stock=$album_preco="";
       echo("Descricao do erro: " . mysqli_error($conn));
     }else{
       foreach($result as $linha)  {
-        echo "<div class='disc'><img src='albums/".$linha['editora']."'  />'</div>"; //MUDAR DEPOIS SE DER
-
+        echo "<div class='disc'><img src='albums/".$linha['editora']."'  /><span>".$linha['nome']."</span></div>";
       }
     }
     ?>
@@ -202,7 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                }
            });
 
-  
+
 
  </script>
 

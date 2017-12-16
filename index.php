@@ -168,6 +168,7 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
     </form>
   </div>
 
+
   <div id="signb">
     <h2>SIGN UP</h2>
   </div>

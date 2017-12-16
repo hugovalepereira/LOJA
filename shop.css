@@ -71,7 +71,7 @@ h1 {
   padding-top: 100px;
 }
 
-#adicionar{
+#adicionar, #view{
   padding: 20px;
   background-color: #ccc;
   top:100px;
