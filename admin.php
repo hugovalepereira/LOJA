@@ -109,14 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $("#adicionar").toggleClass( "hide" )
  });
 
-<<<<<<< HEAD
- ?>
- <script>
- $( "#add" ).click(function() {
-   $("#adicionar").toggleClass( "hide" )
- });
-=======
->>>>>>> 945a7a51994f72a203169f7af33927ce59fd2870
 
  </script>
 

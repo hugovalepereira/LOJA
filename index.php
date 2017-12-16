@@ -1,14 +1,10 @@
 
-
-
 <?php
 include 'func.php';
 
 $nomeErr = $emailErr = $passwordErr = $password_confirmErr = $email_loginErr= $password_loginErr="";
 $nome = $email = $password = $password_confirm = $email_login = $password_login="";
 ?>
-
-
 
 
 
@@ -26,11 +22,38 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
 
   //SIGN UP
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["nome"])) {
-      $nomeErr = "nome é um campo obrigatório";
-    } else {
-      $nome = $_POST["nome"];
-    }
+
+    if(isset($_POST["submit"])){ // CLICANDO NO BOTAO DE SIGN UP
+
+      if (empty($_POST["nome"])) {
+        $nomeErr = "nome é um campo obrigatório";
+      } else {
+        $nome = $_POST["nome"];
+      }
+
+      if (empty($_POST["email"])) {
+        $emailErr = "email é um campo obrigatório";
+      } else {
+        $email =$_POST["email"];
+      }
+
+      if (empty($_POST["password"])) {
+        $passwordErr = "password é um campo obrigatório";
+      }
+
+      if (empty($_POST["password_confirm"])) {
+        $password_confirmErr = "confirmar password é um campo obrigatório";
+      } else {
+        if ($_POST["password_confirm"]==$_POST["password"]) {
+
+          $password = password_hash($_POST["password"],PASSWORD_DEFAULT);
+
+        } else{
+          $password_confirmErr = "as passwords não coincídem!";
+
+        }
+
+      }
 
       if($nome!=""&&$email!=""&&$password!=""){
         $hash = md5( rand(0,1000) );
@@ -40,7 +63,6 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
         $to      = $email;
         $subject = 'Signup | Verifição'; // Give the email a subject
         $message = '
-
 
         A sua conta foi já foi criada.
         Por favor utilize o link abaixo para confirmar e começar a utilizar.
@@ -219,238 +241,6 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
         top: "35vh",
       }, 250, function() {});
 
-
-  ?>
-            <h1>VYNIL STORE </h1>
-            <img src="img/vynil.png" id="vynil">
-
-
-
-            <div id="logb">
-                <h2>LOG IN</h2>
-            </div>
-            <div id="logbg"></div>
-            <div id="log">
-                <form method="post">
-                    email: <input type="email" placeholder="email" name="email_login"><br><br> password: <input type="password" name="password_login"><br><br>
-                    <input type="submit" name="submit_login" value="L O G I N"><br>
-
-                </form>
-            </div>
-
-            <div id="signb">
-                <h2>SIGN UP</h2>
-            </div>
-            <div id="signbg"></div>
-            <div id="sign">
-                <form method="post">
-                    nome: <input type='text' name="nome">
-                    <span class="error"> <?php echo $nomeErr;?></span><br><br> email: <input type="email" name="email">
-                    <span class="error"> <?php echo $emailErr;?></span><br><br> password: <input type="password" name="password">
-                    <span class="error"> <?php echo $passwordErr;?></span><br> confirm password: <input type="password" name="password_confirm">
-                    <span class="error"> <?php echo $password_confirmErr;?></span><br><br>
-                    <input type="submit" name="submit" value="C O N F I R M"><br>
-
-                </form>
-            </div>
-
-            <div id="cntb">
-                <h2>CONTACT</h2>
-            </div>
-            <div id="cnt">
-                <p>oneblackholemail@gmail.com</p>
-            </div>
-
-            <script>
-                $('#logb').click(function() {
-                    $('#sign').css("display", "none");
-                    $('#cnt').css("display", "none");
-                    if ($(window).width() >= 1024) {
-                        $('#logbg').animate({
-                            top: "180vh",
-                        }, 500, function() {
-                            $('#log').css("display", "block");
-                        });
-
-                        $('#signbg').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                        $('#cnt').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-
-                    } else {
-                        $('#logbg').animate({
-                            top: "80vh",
-                        }, 500, function() {
-                            $('#log').css("display", "block");
-                        });
-                        $('#signbg').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                        $('#cnt').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                    }
-                });
-
-                $('#signb').click(function() {
-                    $('#log').css("display", "none");
-                    $('#cnt').css("display", "none");
-                    if ($(window).width() >= 1024) {
-                        $('#signbg').animate({
-                            top: "180vh",
-                        }, 500, function() {
-                            $('#sign').css("display", "block");
-                        });
-                        $('#logbg').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                        $('#cnt').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-
-                    } else {
-                        $('#signbg').animate({
-                            top: "80vh",
-                        }, 500, function() {
-                            $('#sign').css("display", "block");
-                        });
-                        $('#logbg').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                        $('#cnt').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                    }
-                });
-
-                $('#cntb').click(function() {
-                    $('#sign').css("display", "none");
-                    $('#log').css("display", "none");
-                    if ($(window).width() >= 1024) {
-                        $('#cnt').animate({
-                            top: "180vh",
-                        }, 500, function() {
-                            $('#cnt').css("display", "block");
-                        });
-                        $('#logbg').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                        $('#signbg').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-
-                    } else {
-                        $('#cnt').animate({
-                            top: "80vh",
-                        }, 500, function() {
-                            $('#cnt').css("display", "block");
-                        });
-                        $('#logbg').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                        $('#signbg').animate({
-                            top: "35vh",
-                        }, 250, function() {});
-                    }
-                });
-
-            </script>
-
-    </body>
-
-    </html>
-=======
-  <h1>VYNIL STORE</h1>
-  <img src="img/vynil.png" id="vynil">
-  <div id="logb">
-    <h2>LOG IN</h2>
-  </div>
-  <div id="logbg"></div>
-  <div id="log">
-    <form method="post">
-      email: <input type="email" placeholder="email" name="email_login"><br><br> password: <input type="password" name="password_login"><br><br>
-      <input type="submit" name="submit_login" value="L O G I N"><br>
-
-    </form>
-  </div>
-
-  <div id="signb">
-    <h2>SIGN UP</h2>
-  </div>
-  <div id="signbg"></div>
-  <div id="sign">
-    <form method="post">
-      nome: <input type='text' name="nome">
-      <span class="error"> <?php echo $nomeErr;?></span><br><br> email: <input type="email" name="email">
-      <span class="error"> <?php echo $emailErr;?></span><br><br> password: <input type="password" name="password">
-      <span class="error"> <?php echo $passwordErr;?></span><br> confirm password: <input type="password" name="password_confirm">
-      <span class="error"> <?php echo $password_confirmErr;?></span><br><br>
-      <input type="submit" name="submit" value="C O N F I R M"><br>
-
-    </form>
-  </div>
-
-  <div id="cntb">
-    <h2>CONTACT</h2>
-  </div>
-  <div id="cnt">
-    <p>oneblackholemail@gmail.com</p>
-  </div>
-
-
-  <script>
-  $('#logb').click(function() {
-    $('#sign').css("display", "none");
-    $('#cnt').css("display", "none");
-    if ($(window).width() >= 1024) {
-      $('#logbg').animate({
-        top: "180vh",
-      }, 500, function() {
-        $('#log').css("display", "block");
-      });
-
-      $('#signbg').animate({
-        top: "35vh",
-      }, 250, function() {});
-      $('#cnt').animate({
-        top: "35vh",
-      }, 250, function() {});
-
-    } else {
-      $('#logbg').animate({
-        top: "80vh",
-      }, 500, function() {
-        $('#log').css("display", "block");
-      });
-      $('#signbg').animate({
-        top: "35vh",
-      }, 250, function() {});
-      $('#cnt').animate({
-        top: "35vh",
-      }, 250, function() {});
-    }
-  });
-
-  $('#signb').click(function() {
-    $('#log').css("display", "none");
-    $('#cnt').css("display", "none");
-    if ($(window).width() >= 1024) {
-      $('#signbg').animate({
-        top: "180vh",
-      }, 500, function() {
-        $('#sign').css("display", "block");
-      });
-      $('#logbg').animate({
-        top: "35vh",
-      }, 250, function() {});
-      $('#cnt').animate({
-        top: "35vh",
-      }, 250, function() {});
-
-=======
->>>>>>> 945a7a51994f72a203169f7af33927ce59fd2870
     } else {
       $('#signbg').animate({
         top: "80vh",
@@ -501,7 +291,3 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
 </body>
 
 </html>
-<<<<<<< HEAD
->>>>>>> backend
-=======
->>>>>>> 945a7a51994f72a203169f7af33927ce59fd2870
