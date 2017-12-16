@@ -1,5 +1,4 @@
 
-
 <?php
 include 'func.php';
 

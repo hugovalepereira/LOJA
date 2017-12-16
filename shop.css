@@ -58,10 +58,35 @@ h1 {
 }
 
 .disc {
+  cursor: pointer;
     text-align: center;
     margin-bottom: 30px;
     margin-top: 30px;
+    user-select: none;
+    user-drag: none;
 
+}
+
+#add{
+  padding-top: 100px;
+}
+
+#adicionar{
+  padding: 20px;
+  background-color: #ccc;
+  top:100px;
+  position: fixed;
+  width: 50vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+}
+.disc:hover {
+  background-color: #eee;
+}
+
+.hide {
+  display: none;
 }
 
 span {
