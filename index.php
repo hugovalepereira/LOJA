@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 
-<?php
-include 'func.php';
 
-$nomeErr = $emailErr = $passwordErr = $password_confirmErr = $email_loginErr= $password_loginErr="";
-$nome = $email = $password = $password_confirm = $email_login = $password_login="";
-?>
-=======
 
 <?php
 include 'func.php';
@@ -17,55 +10,8 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
 
 
 
-<!doctype html>
-<html>
-<head>
-        <title>VYNIL STORE</title>
-        <meta charset="utf-8">
-        <link href="https://fonts.googleapis.com/css?family=Bungee|Roboto" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
-<body>
-  <?php
 
-  //SIGN UP
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if(isset($_POST["submit"])){ // CLICANDO NO BOTAO DE SIGN UP
-
-      if (empty($_POST["nome"])) {
-        $nomeErr = "nome é um campo obrigatório";
-      } else {
-        $nome = $_POST["nome"];
-      }
-
-      if (empty($_POST["email"])) {
-        $emailErr = "email é um campo obrigatório";
-      } else {
-        $email =$_POST["email"];
-      }
-
-      if (empty($_POST["password"])) {
-        $passwordErr = "password é um campo obrigatório";
-      }
-
-      if (empty($_POST["password_confirm"])) {
-        $password_confirmErr = "confirmar password é um campo obrigatório";
-      } else {
-        if ($_POST["password_confirm"]==$_POST["password"]) {
-
-          $password = password_hash($_POST["password"],PASSWORD_DEFAULT);
-
-        } else{
-          $password_confirmErr = "as passwords não coincídem!";
->>>>>>> 945a7a51994f72a203169f7af33927ce59fd2870
-
-        }
-
-      }
-
-<<<<<<< HEAD
 <!doctype html>
 <html>
 <head>
@@ -85,7 +31,7 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
     } else {
       $nome = $_POST["nome"];
     }
-=======
+
       if($nome!=""&&$email!=""&&$password!=""){
         $hash = md5( rand(0,1000) );
 
@@ -94,7 +40,7 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
         $to      = $email;
         $subject = 'Signup | Verifição'; // Give the email a subject
         $message = '
->>>>>>> 945a7a51994f72a203169f7af33927ce59fd2870
+
 
         A sua conta foi já foi criada.
         Por favor utilize o link abaixo para confirmar e começar a utilizar.
@@ -273,12 +219,12 @@ $nome = $email = $password = $password_confirm = $email_login = $password_login=
         top: "35vh",
       }, 250, function() {});
 
-<<<<<<< HEAD
+
   ?>
             <h1>VYNIL STORE </h1>
             <img src="img/vynil.png" id="vynil">
 
-          
+
 
             <div id="logb">
                 <h2>LOG IN</h2>
