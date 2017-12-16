@@ -19,10 +19,5 @@ error_log("Ligacao estabelecida!",0);
 
 
 
-// $resultados = mysqli_query($conn, "select * from admin;");
-//
-// foreach($resultados as $linha){
-//   echo "email -> ";
-//   echo ($linha['email'] . "<br>" . $linha['password'] . "<br>" );
-// }
+
 ?>
