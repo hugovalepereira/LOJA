@@ -86,6 +86,7 @@ foreach($resultados as $linha){
   }
 
 
+
   ?>
             <h1>VYNIL STORE </h1>
             <img src="img/vynil.png" id="vynil">
