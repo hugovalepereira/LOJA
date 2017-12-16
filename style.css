@@ -132,9 +132,12 @@ form {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 6165f4ec7a8d4dec9914c8eb552e6eb24f6280da
+=======
+>>>>>>> backend
 input {
     color: black;
     position: absolute;
@@ -192,3 +195,12 @@ input {
     }
 
 }
+<<<<<<< HEAD
+=======
+/*
+input {
+position: absolute;
+left: 150px;
+}
+*/
+>>>>>>> backend

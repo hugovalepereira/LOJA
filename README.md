@@ -1,5 +1,6 @@
 # LOJA
 
+<<<<<<< HEAD
 ## tasks
 
 ### Cliente
@@ -35,4 +36,8 @@
 - [ ] Enviar uma mensagem a todos os utilizadores (o utilizador vê as mensagens novas na próxima ação que fizer).
 
 - [ ] Ver estatísticas: total de utilizadores, totais de discos, valor total dos discos em stock, valor total das vendas, total de discos por género musical. Para além destes valores indicados, apresente mais dois valores à sua escolha, que considere úteis num sistema deste tipo.
+=======
+### _tasks_
+- [ ] implementar
+>>>>>>> backend
 
